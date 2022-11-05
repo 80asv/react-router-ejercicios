@@ -31,6 +31,12 @@ const Menu = () => {
             <Link end to="/react">React Documentation</Link>
         </li>
         <hr />
+
+        <li>
+            <h4>Rutas Privadas</h4>
+            <Link to="/login">Login</Link>
+            <Link to="/dashboard">dashboard</Link>
+        </li>
     </ol>
   )
 }

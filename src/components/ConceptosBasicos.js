@@ -1,9 +1,12 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
+import Dashboard from '../pages/Dashboard';
+import Login from '../pages/Login';
 import Productos from '../pages/Productos';
 import ReactTopics from '../pages/ReactTopics';
 import Usuario from '../pages/Usuario';
 import Menu from './Menu';
+import PrivateRoute from './PrivateRoute';
 
 const Home = () => {
     return (
@@ -81,6 +84,12 @@ const ConceptosBasicos = () => {
                         <Route path='componentes' element={<p>Este es el tema Componentes</p>}/>
                         <Route path='props' element={<p>Este es el tema Props</p>}/>
                     </ Route>
+
+
+                    <Route end path='/login' element={<Login/>}/>
+                    
+                    {/* Ruta privada */}
+                    <Route end path="/dashboard" element={<PrivateRoute end element={<Dashboard/>}/>}/>
                 </Routes>
             </Router>
         </div>
