@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, HashRouter } from "react-router-dom";
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 import Productos from '../pages/Productos';
@@ -59,7 +59,25 @@ const Error404 = () => {
 const ConceptosBasicos = () => {
     return (
         <div>
-            <h2>Basic Concepts</h2>
+            <h2>Hash Router</h2>
+
+            <HashRouter>
+                <nav>
+                    <Link to="/">Home</Link>
+					<Link to="/about">About</Link>
+					<Link to="/contact">Contact</Link>
+                </nav>
+				<Routes>
+					<Route end path="/" element={<Home/>}/>
+						<Route end path="/about" element={<About/>} />
+						<Route end path="/contact" element={<Contact/>} />
+						<Route end path="/*" element={<Error404/>} />
+				</Routes>
+            </HashRouter>
+			
+			<hr />
+            
+			<h2>Basic Concepts</h2>
             <Router>
             <Menu/>
 
