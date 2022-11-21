@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const SongForm = ({ handleSearch }) => {
+const SongForm = ({ handleSearch, handlerSaveSong }) => {
 
     const initialForm = {
         artist: "",
@@ -8,6 +8,9 @@ const SongForm = ({ handleSearch }) => {
     }
 
     const [form, setForm] = useState(initialForm);
+
+    // el boton permanece inhabilitado hasta que se haga una busca
+    const [isDisable, setIsDisable] = useState(true);
 
     const handleChange = e => {
         setForm({
@@ -20,10 +23,12 @@ const SongForm = ({ handleSearch }) => {
         e.preventDefault();
         if(!form.artist || !form.song){
             alert("Please enter a artist name and song name");
+            setIsDisable(true);
             return;
         }
         handleSearch(form);
         setForm(initialForm);
+        setIsDisable(false);
     }
 
     return (
@@ -32,6 +37,7 @@ const SongForm = ({ handleSearch }) => {
                 <input type="text" name="artist" placeholder='Nombre del Interprete' onChange={handleChange} value={form.artist}/>
                 <input type="text" name="song" placeholder='Nombre de la canción' onChange={handleChange} value={form.song}/>
                 <input type="submit" value="Enviar" />
+                <input type="button" value="Guardar en favoritos" onClick={handlerSaveSong} disabled={isDisable && "disabled"}/>
             </form>
         </div>
     )
